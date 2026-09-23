@@ -87,7 +87,8 @@ public:
         string t;
         double g, i;
         cout << "Vvedit typ tranzystora: ";
-        cin >> t;
+        cin.ignore();
+        getline(cin, t);
         cout << "Vvedit koefitsiyent pidsylennya: ";
         cin >> g;
         cout << "Vvedit maksymalnyy strum (A): ";
@@ -121,12 +122,18 @@ void upgradeGain(Transistor& t, double newGain) {
 }
 
 int main() {
+    system("chcp 65017 > nul");
+
     cout << "===== STVORENNYA OBYEKTIV =====" << endl;
 
-    Transistor unknownDevice;                            
-    Transistor powerSwitch("IRF540N");                   
+    Transistor unknownDevice;                               
+    Transistor powerSwitch("IRF540N");                     
     Transistor amplifierKT315("KT315B", 200.0, 0.1);     
     Transistor amplifierCopy(amplifierKT315);            
+
+    cout << endl << "===== INTERAKTYVNE VVEDENNYA DANYKH =====" << endl;
+    cout << "Vvedit dani dlya pershoho tranzystora (unknownDevice):" << endl;
+    unknownDevice.input();
 
     cout << endl << "===== POCHATKOVI DANI =====" << endl;
     unknownDevice.print();
